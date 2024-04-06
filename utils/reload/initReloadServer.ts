@@ -1,5 +1,5 @@
-import { WebSocket, WebSocketServer } from "ws";
 import chokidar from "chokidar";
+import { type WebSocket, WebSocketServer } from "ws";
 import { LOCAL_RELOAD_SOCKET_PORT, LOCAL_RELOAD_SOCKET_URL } from "./constant";
 import MessageInterpreter from "./interpreter";
 import { debounce } from "./utils";
@@ -27,14 +27,14 @@ function initReloadServer() {
 				ws.close();
 			}
 			if (message.type === "build_complete") {
-				clientsThatNeedToUpdate.forEach((ws: WebSocket) =>
-					ws.send(MessageInterpreter.send({ type: "do_update" })),
-				);
+				for (const ws of clientsThatNeedToUpdate) {
+					ws.send(MessageInterpreter.send({ type: "do_update" }));
+				}
 				if (needToForceReload) {
 					needToForceReload = false;
-					clientsThatNeedToUpdate.forEach((ws: WebSocket) =>
-						ws.send(MessageInterpreter.send({ type: "force_reload" })),
-					);
+					for (const ws of clientsThatNeedToUpdate) {
+						ws.send(MessageInterpreter.send({ type: "force_reload" }));
+					}
 				}
 			}
 		});
@@ -42,14 +42,14 @@ function initReloadServer() {
 }
 
 /** CHECK:: src file was updated **/
-const debounceSrc = debounce(function (path: string) {
+const debounceSrc = debounce((path: string) => {
 	// Normalize path on Windows
 	const pathConverted = path.replace(/\\/g, "/");
-	clientsThatNeedToUpdate.forEach((ws: WebSocket) =>
+	for (const ws of clientsThatNeedToUpdate) {
 		ws.send(
 			MessageInterpreter.send({ type: "wait_update", path: pathConverted }),
-		),
-	);
+		);
+	}
 }, 100);
 chokidar
 	.watch("src", { ignorePermissionErrors: true })

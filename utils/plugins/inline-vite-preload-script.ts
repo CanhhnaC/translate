@@ -1,5 +1,5 @@
-import type { PluginOption } from "vite";
 import MagicString from "magic-string";
+import type { PluginOption } from "vite";
 
 /**
  * solution for multiple content scripts
@@ -25,7 +25,7 @@ export default function inlineVitePreloadScript(): PluginOption {
 				}
 			}
 			return {
-				code: __vitePreload + code.split(`\n`).slice(1).join(`\n`),
+				code: __vitePreload + code.split("\n").slice(1).join("\n"),
 				map: new MagicString(code).generateMap({ hires: true }),
 			};
 		},

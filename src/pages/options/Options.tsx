@@ -1,14 +1,14 @@
-import type * as React from "react";
 import {
+	Button,
 	Dialog,
-	DialogTrigger,
+	DialogActions,
+	DialogBody,
+	DialogContent,
 	DialogSurface,
 	DialogTitle,
-	DialogBody,
-	DialogActions,
-	DialogContent,
-	Button,
+	DialogTrigger,
 } from "@fluentui/react-components";
+import type * as React from "react";
 
 const Options: React.FC = () => {
 	return (

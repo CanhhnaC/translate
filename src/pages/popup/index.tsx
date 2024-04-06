@@ -1,8 +1,8 @@
+import refreshOnUpdate from "virtual:reload-on-update-in-view";
+import Popup from "@/pages/popup/Popup";
+import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Popup from "@/pages/popup/Popup";
-import refreshOnUpdate from "virtual:reload-on-update-in-view";
-import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 
 refreshOnUpdate("pages/popup");
 

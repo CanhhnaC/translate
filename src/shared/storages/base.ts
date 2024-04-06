@@ -111,12 +111,12 @@ async function updateCache<D>(
 		// Check if the function returns a Promise
 		if (returnsPromise(valueOrUpdate)) {
 			return await valueOrUpdate(cache);
-		} else {
-			return valueOrUpdate(cache);
 		}
-	} else {
-		return valueOrUpdate;
+
+		return valueOrUpdate(cache);
 	}
+
+	return valueOrUpdate;
 }
 
 /**
@@ -172,7 +172,9 @@ export function createStorage<D = string>(
 	};
 
 	const _emitChange = () => {
-		listeners.forEach((listener) => listener());
+		for (const listener of listeners) {
+			listener();
+		}
 	};
 
 	const set = async (valueOrUpdate: ValueOrUpdate<D>) => {
