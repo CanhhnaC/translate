@@ -5,10 +5,12 @@ class ManifestParser {
 	private constructor() {}
 
 	static convertManifestToString(manifest: Manifest): string {
+		let manifestParser = manifest;
 		if (process.env.__FIREFOX__) {
-			manifest = this.convertToFirefoxCompatibleManifest(manifest);
+			manifestParser =
+				ManifestParser.convertToFirefoxCompatibleManifest(manifest);
 		}
-		return JSON.stringify(manifest, null, 2);
+		return JSON.stringify(manifestParser, null, 2);
 	}
 
 	static convertToFirefoxCompatibleManifest(manifest: Manifest) {
@@ -27,7 +29,7 @@ class ManifestParser {
 		manifestCopy.content_security_policy = {
 			extension_pages: "script-src 'self'; object-src 'self'",
 		};
-		delete manifestCopy.options_page;
+		manifestCopy.options_page = undefined;
 		return manifestCopy as Manifest;
 	}
 }

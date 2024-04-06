@@ -1,10 +1,10 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as process from "node:process";
+import url from "node:url";
+import type { PluginOption } from "vite";
 import colorLog from "../log";
 import ManifestParser from "../manifest-parser";
-import type { PluginOption } from "vite";
-import url from "url";
-import * as process from "process";
 
 const { resolve } = path;
 
@@ -40,9 +40,9 @@ export default function makeManifest(config?: {
 		const manifestPath = resolve(to, "manifest.json");
 		if (cacheKey && manifest.content_scripts) {
 			// Naming change for cache invalidation
-			manifest.content_scripts.forEach((script) => {
+			for (const script of manifest.content_scripts) {
 				script.css &&= script.css.map((css) => css.replace("<KEY>", cacheKey));
-			});
+			}
 		}
 
 		fs.writeFileSync(

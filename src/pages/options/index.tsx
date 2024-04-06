@@ -1,8 +1,8 @@
+import refreshOnUpdate from "virtual:reload-on-update-in-view";
 import Options from "@/pages/options/Options";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import refreshOnUpdate from "virtual:reload-on-update-in-view";
 
 refreshOnUpdate("pages/options");
 

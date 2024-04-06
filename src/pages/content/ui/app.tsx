@@ -1,3 +1,4 @@
+import { root } from "@fluentui-contrib/react-shadow";
 import {
 	Button,
 	FluentProvider,
@@ -5,7 +6,6 @@ import {
 	webLightTheme,
 } from "@fluentui/react-components";
 import * as React from "react";
-import { root } from "@fluentui-contrib/react-shadow";
 
 const LIGHT_THEME_CLASS_NAME = "fluentui-light-theme";
 

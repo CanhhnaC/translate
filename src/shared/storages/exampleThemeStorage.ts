@@ -1,7 +1,7 @@
 import {
-	BaseStorage,
-	createStorage,
+	type BaseStorage,
 	StorageType,
+	createStorage,
 } from "@/shared/storages/base";
 
 type Theme = "light" | "dark";

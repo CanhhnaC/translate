@@ -1,8 +1,8 @@
-import * as path from "path";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
+import * as path from "node:path";
 import type { PluginOption } from "vite";
 
-const DUMMY_CODE = `export default function(){};`;
+const DUMMY_CODE = "export default function(){};";
 
 function getInjectionCode(fileName: string): string {
 	return readFileSync(
@@ -45,5 +45,5 @@ export default function addHmr(config: Config): PluginOption {
 }
 
 function getResolvedId(id: string) {
-	return "\0" + id;
+	return `\0${id}`;
 }

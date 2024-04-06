@@ -1,7 +1,7 @@
-import { createRoot } from "react-dom/client";
-import App from "@/pages/content/ui/app";
 import refreshOnUpdate from "virtual:reload-on-update-in-view";
+import App from "@/pages/content/ui/app";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
+import { createRoot } from "react-dom/client";
 
 refreshOnUpdate("pages/content");
 
