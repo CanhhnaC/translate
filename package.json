@@ -13,10 +13,9 @@
     "dev": "bun run build:hmr && (run-p wss build:watch)",
     "dev:firefox": "bun run build:hmr && (run-p wss build:firefox:watch)",
     "test": "vitest",
-    "commitlint": "commitlint --edit",
     "lint": "eslint src --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "bun run lint --fix",
-    "prettier": "prettier . --write",
+    "prettier": "biome format .",
     "prepare": "husky install"
   },
   "type": "module",
@@ -30,8 +29,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
-    "@commitlint/cli": "18.4.4",
-    "@commitlint/config-conventional": "19.1.0",
     "@rollup/plugin-sucrase": "^5.0.2",
     "@rollup/plugin-typescript": "11.1.6",
     "@testing-library/react": "14.2.2",
@@ -57,6 +54,6 @@
     "ws": "8.14.2"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix"]
+    "*.{js,jsx,ts,tsx}": ["biome format .", "biome check ."]
   }
 }
